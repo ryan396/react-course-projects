@@ -1,35 +1,36 @@
 "use strict";
 
-var add = function add(a, b) {
-    return a + b;
+console.log("ITS ALIVE");
+
+var appRoot = document.getElementById('app');
+
+var visibility = true;
+var onVisibilityToggle = function onVisibilityToggle() {
+    visibility = !visibility;
+    render();
 };
 
-console.log(add(55, 1, 1001));
-
-var user = {
-    name: "Ryan",
-    cities: ["Flagstaff", "Minneapolis", "Eau Claire"],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + " has lived in " + city;
-        });
-    }
+var render = function render() {
+    var template = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Visibility Toggle"
+        ),
+        React.createElement(
+            "button",
+            { onClick: onVisibilityToggle },
+            visibility ? "Hide details" : "Show Details"
+        ),
+        visibility ? React.createElement(
+            "p",
+            null,
+            "These are details you can see"
+        ) : React.createElement("p", null)
+    );
+    ReactDOM.render(template, appRoot);
 };
 
-console.log(user.printPlacesLived());
-
-var multiplier = {
-    numbers: [1, 2, 3, 4, 5],
-    multiplyBy: 3,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
-    }
-};
-
-console.log(multiplier.multiply());
+render();
