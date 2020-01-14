@@ -26,6 +26,34 @@ var Counter = function (_React$Component) {
     }
 
     _createClass(Counter, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                var json = localStorage.getItem('count');
+                var count = parseInt(json, 10);
+
+                if (!isNaN(count)) {
+                    this.setState(function () {
+                        return { count: count };
+                    });
+                }
+            } catch (e) {
+                // do nothing
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.count != this.state.count) {
+                localStorage.setItem('count', this.state.count);
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+    }, {
         key: 'handleAddOne',
         value: function handleAddOne() {
             this.setState(function (prevState) {
