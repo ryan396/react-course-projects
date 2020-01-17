@@ -1,9 +1,7 @@
+// whenever you run babel, run through below presets
 {
   "presets": [
     "env",
     "react"
-  ],
-  "plugins": [
-    "transform-class-properties"
   ]
 }
